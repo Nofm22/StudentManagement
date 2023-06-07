@@ -9,19 +9,6 @@ const User = ({ className, role }) => {
     const [visible, setVisible] = useState(false);
 
     let items = [
-        // {
-        //     menu: [
-        //         {
-        //             title: "Profile",
-        //             url: "/profile",
-        //         },
-        //         {
-        //             title: "Edit profile",
-        //             url: "/settings",
-        //         },
-        //     ],
-        // },
-
         {
             menu: [
                 {
@@ -33,15 +20,6 @@ const User = ({ className, role }) => {
     ];
     if (role && role === "teacher") {
         items = [
-            // {
-            //     menu: [
-            //         {
-            //             title: "Profile",
-            //             url: "/profile",
-            //         },
-            //     ],
-            // },
-
             {
                 menu: [
                     {

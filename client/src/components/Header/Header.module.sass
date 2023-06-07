@@ -56,6 +56,16 @@
     &:not(:last-child)
         margin-right: 24px
 
+.search
+    +m
+        visibility: hidden
+        opacity: 0
+        transition: all .2s
+        &.visible
+            visibility: visible
+            opacity: 1
+            
+
 .buttonSearch
     display: none
     width: 48px
@@ -71,18 +81,11 @@
             +dark
                 fill: $n1
 
+
 .control .button
     +t
         display: none
 
-.search
-    +m
-        visibility: hidden
-        opacity: 0
-        transition: all .2s
-        &.visible
-            visibility: visible
-            opacity: 1
 
 .btns
     display: flex
