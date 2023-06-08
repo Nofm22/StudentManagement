@@ -105,6 +105,22 @@
             +m
                 display: inline-block
 
+.body
+    position: relative
+    display: none
+    padding-left: 36px
+    &:before
+        content: ""
+        position: absolute
+        top: 0
+        left: 23px
+        bottom: 32px
+        width: 2px
+        border-radius: 2px
+        background: $n3
+        +dark
+            background: $n6
+
 .add
     position: absolute
     top: 50%
@@ -141,21 +157,6 @@
         svg
             fill: $shades1
 
-.body
-    position: relative
-    display: none
-    padding-left: 36px
-    &:before
-        content: ""
-        position: absolute
-        top: 0
-        left: 23px
-        bottom: 32px
-        width: 2px
-        border-radius: 2px
-        background: $n3
-        +dark
-            background: $n6
 
 .link
     position: relative
