@@ -1,5 +1,23 @@
 import axiosClient from "../api/apiClient";
 
+export const classesServices = {
+  getListClassesByGrades: (id) =>
+    axiosClient.get(`classes/getListGradeClasses?name=${id}`),
+  getClassCurSize: (name) =>
+    axiosClient.get(`classes/getClassCurSize?name=${name}`),
+  changeClass: (studentId, classId) =>
+    axiosClient.put(
+      `classes/changeClass?studentId=${studentId}&classId=${classId}`
+    ),
+  getClass: (id) => axiosClient.get(`classes/getClass?id=${id}`),
+  getCourses: (id) => axiosClient.get(`courses/getCourses?id=${id}`),
+  getClassNotFull: () => axiosClient.get(`classes/getNotFullClasses`),
+  createClass: (params) => axiosClient.post(`classes/createClass`, params),
+  updateClass: (params) => axiosClient.put(`classes/updateClass`, params),
+  getClassNumberStudent: (name) =>
+    axiosClient.get(`classes/getClassNumberStudent?name=${name}`),
+};
+
 export const coursesServices = {
   createCourse: (params) => axiosClient.post(`courses/createCourse`, params),
   getCoursesByGrade: (id) =>
