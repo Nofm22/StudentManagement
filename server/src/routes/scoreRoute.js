@@ -9,7 +9,6 @@ const {
     getAVGScoreByCourseController,
     getAllStudentScoreController,
     getSemesterSummaryController,
-    postExcelScoreController,
 } = require("../controllers/scoreControllers");
 
 const scoreRouter = express.Router();
@@ -23,7 +22,6 @@ scoreRouter.delete("/deleteScore", deleteScoreController);
 scoreRouter.put("/updateScore", updateScoreController);
 scoreRouter.get("/getAllStudentScore", getAllStudentScoreController);
 scoreRouter.get("/getSemesterSummary", getSemesterSummaryController);
-scoreRouter.post("/postExcelScore", postExcelScoreController);
 module.exports = {
     scoreRouter,
 };

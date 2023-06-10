@@ -1,9 +1,6 @@
 const { Score, sequelize, Student, Class, Course } = require("../models/index");
 const { QueryTypes } = require("sequelize");
 const fs = require("fs");
-const { promises } = require("dns");
-const xlsx = require("xlsx");
-
 const createScoreService = async (data) => {
     const {
         studentId,
@@ -399,12 +396,11 @@ const getSemesterSummaryService = (semesterOne, semesterTwo) => {
                 }
 
                 let ratio = passCount / students.length;
-                const newLocal = Math.round(ratio * 100) + "%";
                 classInfo = {
                     className: classes[i].name,
                     numOfStudents: numOfStudents,
                     numOfPass: passCount,
-                    ratio: newLocal,
+                    ratio: Math.round(ratio * 100) + "%",
                 };
                 results.push(classInfo);
             }
@@ -412,59 +408,6 @@ const getSemesterSummaryService = (semesterOne, semesterTwo) => {
             else reject({});
         } catch (e) {
             reject(e);
-        }
-    });
-};
-
-const postExcelScoreService = (req) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            const { classId, courseId } = req.query;
-            const _students = await Student.findAll({ where: { classId: classId } });
-
-            if (req.file) {
-                const workbook = xlsx.readFile(req.file.path);
-                const worksheet = workbook.Sheets[workbook.SheetNames[0]];
-
-                const data = xlsx.utils.sheet_to_json(worksheet);
-
-                count = 0;
-                for (const row of data) {
-                    if (_students[count])
-                    {
-                        studentId = _students[count].id;
-                        count++;
-
-                        const existingScore = await Score.findOne({
-                            where: { courseId: courseId, studentId: studentId, semesterOne: row["semesterOne"], semesterTwo: row["semesterTwo"] },
-                        });
-                        if (existingScore) {
-                            existingScore.exam15 = row["exam15"];
-                            existingScore.exam45 = row["exam45"];
-                            existingScore.examFinal = row["examFinal"];
-                            existingScore.semesterOne = row["semesterOne"];
-                            existingScore.semesterTwo = row["semesterTwo"];
-                            await existingScore.save();
-                        } else {
-                            await Score.create({
-                                courseId: courseId,
-                                exam15: row["exam15"],
-                                exam45: row["exam45"],
-                                examFinal: row["examFinal"],
-                                studentId: studentId,
-                                semesterOne: row["semesterOne"],
-                                semesterTwo: row["semesterTwo"],
-                            });
-                        }
-                    }
-                }
-
-                resolve();
-            } else {
-                reject({ message: "No file uploaded" });
-            }
-        } catch (error) {
-            reject(error);
         }
     });
 };
@@ -479,5 +422,4 @@ module.exports = {
     getAVGScoreByCourseService,
     getAllStudentScoreService,
     getSemesterSummaryService,
-    postExcelScoreService,
 };
