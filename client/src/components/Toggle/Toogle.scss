@@ -1,0 +1,60 @@
+:root {
+  --light: #d8dbe0;
+  --dark: #28292c;
+}
+
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 20px;
+  background-color: var(--light); /* Đổi mặc định ban đầu sang màu đen */
+  transition: background-color 0.3s;
+}
+
+.light .slider {
+  background-color: var(--dark);
+}
+
+.dark .slider {
+  background-color: var(--light);
+}
+
+.slider:before {
+  content: '';
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  border-radius: 50%;
+  background-color: var(--dark); /* Đổi mặc định ban đầu sang màu trắng */
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.light .slider:before {
+  transform: translateX(0);
+  background-color: var(--light);
+}
+
+.dark .slider:before {
+  transform: translateX(20px);
+  background-color: var(--dark);
+}
