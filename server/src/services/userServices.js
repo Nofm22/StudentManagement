@@ -123,7 +123,7 @@ const deleteUserService = async (id) => {
     });
 };
 const updateUserService = async (user) => {
-    const { username, lastName, phone, id, avatar, type } = user;
+    const { username, lastName, phone, id, avatar, type,imageUrl } = user;
     return new Promise(async (resolve, reject) => {
         const user = await User.findOne({
             where: { id },
@@ -135,6 +135,7 @@ const updateUserService = async (user) => {
                 phone,
                 avatar,
                 type,
+                imageUrl
             });
             await user.save();
             resolve(user);
