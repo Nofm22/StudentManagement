@@ -21,42 +21,17 @@ Phần mềm quản lý học sinh (Learn Management System – LMS) được l�
 
 ## 4. Hướng dẫn Deploy Project
 
-### Server
+1. Server
 
-1. Khởi tạo Database và Server
+- Server được deploy trên AWS
 
-- Với Database, dùng https://www.freesqldatabase.com/ để khởi tạo
-- Với Server, dùng https://render.com/ để deploy từ một repo github
+2. Client
 
-2. Cấu hình Database
+- Client được deploy trên vercel
 
-- Ban đầu ta sẽ dùng Server chạy trên local để cấu hình:
-  gõ: npm install -> vào file config trong thư mục config, sửa lại tên database, password sao cho giống với khi cài đặt MySQL (Theo cấu hình của https://www.freesqldatabase.com/ cung cấp) -> Quay trở lại server console, gõ: npx sequelize-cli db:migrate
-- Mở MySQL Workbench -> Kết nối tới database -> Import dữ liệu từ thư mục datas.
+3. Deploy:
 
-3. Cấu hình Server
-
-- Trong Repo github -> vào file config trong thư mục config, sửa lại tên database, password sao cho giống với khi cài đặt MySQL (Theo cấu hình của https://www.freesqldatabase.com/ cung cấp)
-- Thêm các địa chỉ client vào server.js để tránh vi phạm CORS
-
-4. Deploy:
-
-- Tạo WebService trên https://render.com/
-- Cung cấp các thông tin cơ bản và kết nối tới Repo github ở trên
-- Khởi tạo biến môi trường như trên file .env
-- Build Command: npm install
-- Start command: node server.js
-
-### Client
-
-Ta sẽ dùng https://render.com/ để tạo một trang web địa chỉ tĩnh cho client
-
-1. Khởi tạo Client trên một repo github
-2. Thay đổi BaseURL trong client/src/api/apiClient.js sang URL của Server
-3. Tiến hành tạo Static Site trên https://render.com/
-4. Cung cấp thông ti ncow bản của Static Site
-5. Build Command: npm run build
-6. Publish directory: build
+- Link: https://student-management-client.vercel.app/
 
 ## 5. Link demo
 
