@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Toogle.scss";
 
 const Toggle = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
-
   const handleToggle = () => {
     setIsDarkMode(!isDarkMode);
     if (isDarkMode) {
@@ -14,6 +13,7 @@ const Toggle = () => {
       document.body.classList.remove("dark-mode");
     }
   };
+  useEffect(handleToggle, [setIsDarkMode]);
 
   return (
     <label className={`toggle ${isDarkMode ? "dark" : "light"}`}>
