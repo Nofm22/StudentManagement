@@ -131,12 +131,17 @@ $lfs-grey: #75787b
         thead
             border-top: 2px solid $lfs-yellow
             border-bottom: 2px solid $lfs-yellow
+            border-left: 2px solid $lfs-yellow
+            border-right: 2px solid $lfs-yellow
             th
                 text-transform: uppercase
                 text-align: center
                 padding: 10px
-                color: $n3
-                border: 1px solid #F1F1F1
+                color: $n7
+                border: 2px solid $lfs-yellow
+                +dark
+                    color: $n1
+                    border: 2px solid $lfs-yellow
 
         tbody
             tr
@@ -145,21 +150,28 @@ $lfs-grey: #75787b
                 td
                     text-align: center
                     padding: 10px
-                    border: 1px solid #F1F1F1
+                    border: 1px solid $n7
+                    +dark
+                        border: 1px solid $n1
 
                 th
                     padding-left: 10px
-                    border: 1px solid #F1F1F1
+                    border: 1px solid $n7
                     padding: 8px
+                    +dark
+                        border: 1px solid $n1
 
 .currentClass
     display: flex
     justify-content: flex-start
     width: 100%
     gap: 30px
-    color: $n3
+    color: $n7
     align-items: center
     margin-top: 1rem
+    +dark
+        color: $n1
+
 
     .typeClass
         font-size: 1rem
