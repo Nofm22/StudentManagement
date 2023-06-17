@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Toggle.module.scss";
+import "./Toggle.scss";
 
 const Toggle = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -17,7 +17,12 @@ const Toggle = () => {
 
   return (
     <label className={`toggle ${isDarkMode ? "dark" : "light"}`}>
-      <input type="checkbox" checked={isDarkMode} onChange={handleToggle} />
+      <input
+        className="toggle-input"
+        type="checkbox"
+        checked={isDarkMode}
+        onChange={handleToggle}
+      />
       <span className="slider" />
     </label>
   );
