@@ -1,3 +1,5 @@
+
+const cloudinary = require('../config/cloudinary');
 const {
     createUser,
     userLogin,
@@ -119,6 +121,33 @@ const updateUser = async (req, res) => {
         });
     }
 };
+const uploadImage = async (req, res) => {
+    try {
+        // File has been uploaded to the server using Multer
+        // Now upload the file to Cloudinary
+        const { id } = req.query; 
+        const file = req.file;
+        console.log(id)
+        cloudinary.uploader.upload(file.path, async (error, result) => {
+        // Handle the Cloudinary response
+    
+        if (error) {
+            // Handle error
+            console.error(error);
+            return res.status(500).json({ error: 'Failed to upload image to Cloudinary' });
+        }
+        const user = await updateUserService({ imageUrl: result.secure_url,id: +id })
+        // Image uploaded successfully
+        res.status(200).json(user);
+    });
+    } catch (e) {
+        console.log(e)
+        res.status(404).send({
+            statusCode: 404,
+            message: "Not found",
+        });
+    }
+};
 
 module.exports = {
     Register,
@@ -127,4 +156,5 @@ module.exports = {
     auth,
     deleteUser,
     updateUser,
+    uploadImage
 };
