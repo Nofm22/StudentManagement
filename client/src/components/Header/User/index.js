@@ -5,12 +5,20 @@ import OutsideClickHandler from "react-outside-click-handler";
 import styles from "./User.module.sass";
 import Icon from "../../Icon";
 
-const User = ({ className, role }) => {
+const User = ({ className, role, onToggleModal }) => {
     const [visible, setVisible] = useState(false);
 
+    const handleEdit = () => {
+        setVisible(false);
+        onToggleModal(true);
+    };
     let items = [
         {
             menu: [
+                {
+                    title: "Edit",
+                    edit: true,
+                },
                 {
                     title: "Log out",
                     url: "/",
@@ -63,6 +71,14 @@ const User = ({ className, role }) => {
                                         )}
                                         {x.title}
                                     </NavLink>
+                                ) : x.edit ? (
+                                    <button
+                                        className={styles.item}
+                                        onClick={handleEdit}
+                                        key={index}
+                                    >
+                                        {x.title}
+                                    </button>
                                 ) : (
                                     <button
                                         className={styles.item}
