@@ -6,13 +6,17 @@ import Header from "../Header";
 import authApi from "../../api/authApi";
 import { useNavigate } from "react-router-dom";
 import { classesServices } from "../../services/studentServices";
+import Modal from "../Modal";
 const Page = ({ wide, children, title }) => {
+    const [isOpen, setIsOpen] = useState(false);
     const [visible, setVisible] = useState(false);
     const navigate = useNavigate();
     const [role, setRole] = useState("");
     const [userId, setUserId] = useState(null);
     const [course, setCourse] = useState("");
-
+    const toggleModalHandler = () => {
+        setIsOpen(true);
+    };
     const [data, setData] = useState({});
     useEffect(() => {
         async function auth() {
@@ -54,6 +58,8 @@ const Page = ({ wide, children, title }) => {
     }, []);
     return (
         <>
+            {isOpen && <Modal setIsOpen={setIsOpen} />}
+
             <div className={styles.page}>
                 <Sidebar
                     dropdown={course}
@@ -63,7 +69,11 @@ const Page = ({ wide, children, title }) => {
                     })}
                     onClose={() => setVisible(false)}
                 />
-                <Header data={data} onOpen={() => setVisible(true)} />
+                <Header
+                    data={data}
+                    onOpen={() => setVisible(true)}
+                    onToggle={() => toggleModalHandler(true)}
+                />
                 <div className={styles.inner}>
                     <div
                         className={cn(styles.container, {
