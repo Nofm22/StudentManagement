@@ -13,7 +13,7 @@ const Toggle = () => {
       document.body.classList.remove("dark-mode");
     }
   };
-  useEffect(handleToggle, [setIsDarkMode]);
+  useEffect(handleToggle, []);
 
   return (
     <label className={`toggle ${isDarkMode ? "dark" : "light"}`}>

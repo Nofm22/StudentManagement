@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import cn from "classnames";
 import { Link, useNavigate } from "react-router-dom";
-import styles from "./NameAndDescription.light.module.sass";
+import styles from "./NameAndDescription.module.sass";
 import Card from "../../../Card";
 import TextInput from "../../../TextInput";
 import Dropdown from "../../../Dropdown";
@@ -32,6 +32,11 @@ const NameAndDescription = ({
   const avatar = value.gender
     ? "/images/content/male.png"
     : "/images/content/female.png";
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  useEffect(() => {
+    const isDarkModeEnabled = document.body.classList.contains("dark-mode");
+    setIsDarkMode(isDarkModeEnabled);
+  }, [isDarkMode]);
   return (
     <Card
       className={cn(styles.card, className)}
@@ -118,5 +123,4 @@ const NameAndDescription = ({
     </Card>
   );
 };
-
 export default NameAndDescription;
