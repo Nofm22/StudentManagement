@@ -8,7 +8,10 @@ const {
     getAVGScoreByCourseService,
     getAllStudentScoreService,
     getSemesterSummaryService,
+    postExcelScoreService,
 } = require("../services/scoreServices");
+
+const multer = require('multer');
 
 const getScoreController = async (req, res) => {
     const { id } = req.query;
@@ -162,6 +165,37 @@ const getSemesterSummaryController = async (req, res) => {
         });
     }
 };
+
+const postExcelScoreController = async (req, res) => {
+
+    try {
+
+
+        const upload = multer({ dest: 'uploads/' }).single('file');
+
+
+    
+        upload(req, res, async (error) => {
+
+          if (error instanceof multer.MulterError) {
+            // Xử lý lỗi multer
+            res.status(400).send('Multer error: ' + error.message);
+          } else if (error) {
+            // Xử lý lỗi khác
+            res.status(500).send('Error: ' + error.message);
+          } else {
+            // Nếu không có lỗi, gọi postExcelScoreService để xử lý dữ liệu
+            const data = await postExcelScoreService(req);
+            res.status(200).send({
+              statusCode: 200,
+              message: 'Success',
+            });
+          }
+        });
+      } catch (e) {
+        res.status(400).send('No file uploaded');
+      }
+};
 module.exports = {
     getScoreController,
     createScoreController,
@@ -172,4 +206,5 @@ module.exports = {
     getAVGScoreByCourseController,
     getAllStudentScoreController,
     getSemesterSummaryController,
+    postExcelScoreController,
 };
