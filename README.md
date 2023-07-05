@@ -13,7 +13,7 @@ Phần mềm quản lý học sinh (Learn Management System – LMS) được l�
 
 ## 3. Hướng dẫn cấu hình Project chạy trên Local PC
 
-- Clone Project về máy bằng lệnh: git clone https://github.com/Nofm22/student_management.git
+- Clone Project về máy bằng lệnh: git clone https://github.com/Nofm22/StudentManagement.git
 - Cài đặt ứng dụng MySQL Workbench, VS Code
 - Vào thư mục student_management.
 - Cài đặt server: Vào thư mục server, gõ: npm install -> npx sequelize-cli db:migrate -> Import dữ liệu trong thư mục datas vào trong database MySQL -> vào file config trong thư mục config, sửa lại tên database, password sao cho giống với khi cài đặt MySQL -> gõ npm run dev để chạy server.
